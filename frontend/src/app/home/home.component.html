@@ -1,0 +1,29 @@
+<button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+  <mat-card *ngFor="let doctor of doctors">
+    <mat-card-header>
+      <mat-card-title>Info of {{ doctor.DoctorName }}</mat-card-title>
+      <mat-card-subtitle>welcome</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="{{ doctor.ImagePath }}"
+      class="h-48 object-cover"
+      alt="Image"
+    />
+    <mat-card-content>
+      <strong>{{ doctor.Specialization }}</strong>
+      <em>{{ doctor.Hospital }}</em>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-list-item routerLink="/doctors/{{ doctor.Id }}">Edit</a>
+      <p-button icon="pi pi-trash" label="Delete" (onClick)="onDelete(doctor.Id)" severity="danger"></p-button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!-- <div class="grid">
+  <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
+  <ul *ngFor="let doctor of doctors">
+    <li>{{ doctor.DoctorName }}</li>
+  </ul>
+</div> -->

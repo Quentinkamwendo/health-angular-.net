@@ -1,0 +1,14 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="grid">
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="Email">
+      <mat-error *ngIf="f['Email'].errors?.['required']">Email is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Login</button>
+  </form>
+</div>

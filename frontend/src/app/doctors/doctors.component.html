@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()" class="grid">
+    <h3>{{ heading }}</h3>
+    <mat-form-field class="w-full">
+      <mat-label>Doctor Name</mat-label>
+      <input matInput type="text" formControlName="DoctorName" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Specialization</mat-label>
+      <input matInput type="text" formControlName="Specialization" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="Age" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Hospital</mat-label>
+      <input matInput type="text" formControlName="Hospital" />
+    </mat-form-field>
+    <div class="flex justify-center">
+      <p-fileUpload
+        name="Image"
+        url="https://www.primefaces.org/cdn/api/upload.php"
+        (onUpload)="onUpload($event)"
+        accept="image/*"
+        maxFileSize="1000000"
+      >
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">
+              {{ file.name }} - {{ file.size }} bytes
+            </li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+    <button class="w-[30%] mx-auto" mat-raised-button color="primary">Save</button>
+  </form>
+</div>
