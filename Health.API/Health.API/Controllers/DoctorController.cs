@@ -85,23 +85,6 @@ namespace Health.API.Controllers
             };
             return Ok(response);
 
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!DoctorProfileExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return NoContent();
         }
 
         // POST: api/Doctor
@@ -171,7 +154,7 @@ namespace Health.API.Controllers
                 await file.CopyToAsync(fileStream);
             }
 
-            var hostUrl = $"{accessor.HttpContext!.Request.Scheme}://{accessor.HttpContext.Request.Host}{accessor.HttpContext.Request.PathBase}";
+            var hostUrl = "http://localhost:5115";
             var imagePath = hostUrl + "/Doctors/" + uniqueFileName;
 
             return imagePath;

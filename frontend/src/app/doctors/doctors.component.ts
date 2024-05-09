@@ -60,9 +60,6 @@ export class DoctorsComponent implements OnInit {
       formData.append('Specialization', doctorData.Specialization!);
       formData.append('Hospital', doctorData.Hospital!);
       formData.append('Image', doctorData.Image!);
-      // for (let file of this.uploadedFiles) {
-      //   formData.append('Image', file);
-      // }
 
       if (this.id) {
         this.doctorService
@@ -116,8 +113,6 @@ export class DoctorsComponent implements OnInit {
     if (file) {
       this.uploadedFiles.push(file);
       this.doctorForm.get('Image')?.setValue(file);
-      // this.doctorForm.patchValue({ Image: file });
-      // this.doctorForm.get('Image')?.markAsTouched();
     }
   }
 
@@ -128,11 +123,5 @@ export class DoctorsComponent implements OnInit {
   //   }
   // }
 
-  // onFileSelected(event: Event, field: string) {
-  //   const fileInput = event.target as HTMLInputElement;
-  //   if (fileInput.files && fileInput.files.length > 0) {
-  //     const file = fileInput.files![0];
-  //     this.projectForm.get(field)?.setValue(file);
-  //   }
-  // }
+
 }

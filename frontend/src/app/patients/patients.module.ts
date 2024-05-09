@@ -13,8 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FileUploadModule } from 'primeng/fileupload';
-import { MessagesModule } from 'primeng/messages';
-import { ToastModule } from 'primeng/toast';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { ToastModule } from 'primeng/toast';
     MatFormFieldModule,
     MatDatepickerModule,
     FileUploadModule,
-    MessagesModule,
-    ToastModule
+    MatSnackBarModule,
+    MatButtonModule
   ]
 })
 export class PatientsModule { }

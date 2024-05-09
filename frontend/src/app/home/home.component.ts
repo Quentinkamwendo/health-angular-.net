@@ -37,12 +37,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.doctorService
-      .getDoctors()
-      .pipe(first())
-      .subscribe((doctors) => {
-        this.doctors = doctors;
-      });
+    this.loadDoctors();
   }
 
   // deleteProject(id: string) {
@@ -64,6 +59,7 @@ export class HomeComponent implements OnInit {
             verticalPosition: 'bottom',
             horizontalPosition: 'right',
           });
+          this.loadDoctors();
         },
         error: (err) => {
           this.snackBar.open(err, 'close', {
@@ -88,6 +84,15 @@ export class HomeComponent implements OnInit {
           });
           this.router.navigateByUrl('/login');
         },
+      });
+  }
+
+  loadDoctors() {
+    this.doctorService
+      .getDoctors()
+      .pipe(first())
+      .subscribe((doctors) => {
+        this.doctors = doctors;
       });
   }
 }

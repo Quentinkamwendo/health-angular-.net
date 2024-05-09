@@ -22,10 +22,10 @@ namespace Health.API.Controllers
             this.environment = environment;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreatePatient([FromForm] CreatePatientDto request) 
+        [HttpPost("{doctorId}")]
+        public async Task<IActionResult> CreatePatient(Guid doctorId, [FromForm] CreatePatientDto request) 
         {
-            var doctor = dbContext.Doctors.Find(request.DoctorId);
+            var doctor = dbContext.Doctors.Find(doctorId);
 
             if (doctor == null)
             {
@@ -39,7 +39,7 @@ namespace Health.API.Controllers
                 TreatmentDate = request.TreatmentDate,
                 PatientName = request.PatientName,
                 Residence = request.Residence,
-                DoctorId = request.DoctorId,
+                DoctorId = doctorId,
                 Doctor = doctor
             };
 
@@ -67,8 +67,8 @@ namespace Health.API.Controllers
             return CreatedAtAction(nameof(GetPatient), new { id = patient.Id }, response);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePatient(Guid id, [FromForm] CreatePatientDto request) 
+        [HttpPut("{doctorId}/{id}")]
+        public async Task<IActionResult> UpdatePatient(Guid doctorId, Guid id, [FromForm] CreatePatientDto request) 
         {
             var existingPatient = await dbContext.Patients.FindAsync(id);
             if(existingPatient == null) 
@@ -113,8 +113,8 @@ namespace Health.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetPatient(Guid id) 
+        [HttpGet("{doctorId}/{id}")]
+        public async Task<ActionResult> GetPatient(Guid doctorId, Guid id) 
         { 
             var patient = await dbContext.Patients.FindAsync(id);
             return Ok(patient);
@@ -138,7 +138,7 @@ namespace Health.API.Controllers
         private async Task<string> SaveFileToDisk(IFormFile file) 
         {
             var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
-            var hostUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+            var hostUrl = "http://localhost:5115";
             var filePath = this.environment.WebRootPath + "\\Patients\\" + uniqueFileName;
             var imagePath = hostUrl + "/Patients/" + uniqueFileName;
 

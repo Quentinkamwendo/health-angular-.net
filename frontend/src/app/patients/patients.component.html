@@ -1,27 +1,35 @@
 <div>
-  <form [formGroup]="patientForm" class="grid">
+  <h3>{{title}}</h3>
+  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="grid">
     <mat-form-field class="w-full">
       <mat-label>Patient Name</mat-label>
-      <input matInput type="text" formControlName="patientName" />
+      <input matInput type="text" formControlName="PatientName" />
     </mat-form-field>
     <mat-form-field class="w-full">
-      <mat-label>Location</mat-label>
-      <input matInput type="text" formControlName="location" />
+      <mat-label>Disease</mat-label>
+      <input matInput type="text" formControlName="Disease" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Residence</mat-label>
+      <input matInput type="text" formControlName="Residence" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="Age" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Treatment Date</mat-label>
-      <input matInput [matDatepicker]="picker" type="datetime" />
+      <input matInput [matDatepicker]="picker" type="datetime" formControlName="TreatmentDate" />
       <mat-datepicker-toggle matIconSuffix [for]="picker">
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <div class="flex justify-center">
-      <p-toast></p-toast>
       <p-fileUpload
-        name="demo[]"
+        name="Image"
+        url="https://www.primefaces.org/cdn/api/upload.php"
         (onUpload)="onUpload($event)"
         accept="image/*"
-        [multiple]="true"
         maxFileSize="1000000"
       >
         <ng-template pTemplate="content">
@@ -33,5 +41,6 @@
         </ng-template>
       </p-fileUpload>
     </div>
+    <button class="w-[25%] mx-auto" mat-flat-button color="accent">Save</button>
   </form>
 </div>

@@ -17,13 +17,9 @@
     </mat-card-content>
     <mat-card-actions>
       <a mat-list-item routerLink="/doctors/{{ doctor.Id }}">Edit</a>
+      <a [routerLink]="'patients/' + doctor.Id">{{doctor.Patients.length}} Patients</a>
       <p-button icon="pi pi-trash" label="Delete" (onClick)="onDelete(doctor.Id)" severity="danger"></p-button>
     </mat-card-actions>
   </mat-card>
 </div>
-<!-- <div class="grid">
-  <button mat-stroked-button color="primary" (click)="onLogout()">Logout</button>
-  <ul *ngFor="let doctor of doctors">
-    <li>{{ doctor.DoctorName }}</li>
-  </ul>
-</div> -->
+
