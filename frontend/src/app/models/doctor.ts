@@ -5,4 +5,7 @@ export class Doctor {
     Hospital?: string;
     Age?: number;
     Image?: File;
+    $values?: [
+
+    ]
 }

@@ -31,7 +31,8 @@ namespace Health.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctorProfiles()
         {
-            return await _context.Doctors.ToListAsync();
+            var doctors = await _context.Doctors.Include(d => d.Patients).ToListAsync();
+            return Ok(doctors);
         }
 
         // GET: api/Doctor/5

@@ -12,6 +12,7 @@ import { PatientService } from '../services/patient.service';
 import { Patient } from '../models/patient';
 import { first } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-patients',
@@ -29,7 +30,8 @@ export class PatientsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private patientService: PatientService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private datePipe: DatePipe
   ) {
     this.patientForm = this.fb.group({
       PatientName: ['', Validators.required],
@@ -67,7 +69,7 @@ export class PatientsComponent implements OnInit {
       const patient = new FormData();
       patient.append('PatientName', patientData.PatientName!);
       patient.append('Residence', patientData.Residence!);
-      patient.append('TreatmentDate', patientData.TreatmentDate?.toString()!);
+      patient.append('TreatmentDate', this.datePipe.transform(patientData.TreatmentDate, 'yyyy-MM-dd')!);
       patient.append('Disease', patientData.Disease!);
       patient.append('Age', patientData.Age?.toString()!);
       patient.append('Image', patientData.Image!);

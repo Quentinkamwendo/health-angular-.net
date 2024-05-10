@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Health.API.Models.Domain
 {
@@ -16,7 +15,6 @@ namespace Health.API.Models.Domain
         public string ImagePath { get; set; }
         [ForeignKey("Doctor")]
         public Guid DoctorId { get; set; }
-        [JsonIgnore]
         public Doctor Doctor { get; set; }
     }
 }

@@ -40,7 +40,6 @@ namespace Health.API.Controllers
                 PatientName = request.PatientName,
                 Residence = request.Residence,
                 DoctorId = doctorId,
-                Doctor = doctor
             };
 
             if (request.Image != null) 
@@ -61,10 +60,10 @@ namespace Health.API.Controllers
                 Residence = patient.Residence,
                 ImagePath = patient.ImagePath,
                 Doctor = patient.Doctor,
-                //DoctorId = patient.DoctorId
+                DoctorId = patient.DoctorId
             };
 
-            return CreatedAtAction(nameof(GetPatient), new { id = patient.Id }, response);
+            return CreatedAtAction(nameof(GetPatient), new { id = patient.Id, doctorId = doctorId }, response);
         }
 
         [HttpPut("{doctorId}/{id}")]
@@ -81,6 +80,7 @@ namespace Health.API.Controllers
             existingPatient.TreatmentDate = request.TreatmentDate;
             existingPatient.PatientName = request.PatientName;
             existingPatient.Residence = request.Residence;
+            existingPatient.DoctorId = doctorId;
 
             if (request.Image != null)
             {
@@ -115,9 +115,38 @@ namespace Health.API.Controllers
 
         [HttpGet("{doctorId}/{id}")]
         public async Task<ActionResult> GetPatient(Guid doctorId, Guid id) 
-        { 
-            var patient = await dbContext.Patients.FindAsync(id);
-            return Ok(patient);
+        {
+            try
+            {
+                var doctor = await dbContext.Doctors.FindAsync(doctorId);
+                if (doctor == null)
+                {
+                    return NotFound("Doctor not found");
+                }
+
+                var patient = await dbContext.Patients.FindAsync(id);
+                if (patient == null || patient.DoctorId != doctorId)
+                {
+                    return NotFound("Patient not found");
+                }
+
+                var patientDto = new PatientDto
+                {
+                    PatientName = patient.PatientName,
+                    Age = patient.Age,
+                    Disease = patient.Disease,
+                    ImagePath = patient.ImagePath,
+                    Residence = patient.Residence,
+                    DoctorId = patient.DoctorId,
+                    TreatmentDate = patient.TreatmentDate
+                };
+
+                return Ok(patientDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
@@ -126,7 +155,8 @@ namespace Health.API.Controllers
             var patient = await dbContext.Patients.FindAsync(id);
             if(patient != null) 
             {
-                DeleteFileFromDisk(patient.ImagePath);
+                if (!string.IsNullOrEmpty(patient.ImagePath))
+                    DeleteFileFromDisk(patient.ImagePath);
                 dbContext.Patients.Remove(patient);
                 await dbContext.SaveChangesAsync();
                 return NoContent();

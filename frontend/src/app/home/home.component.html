@@ -16,10 +16,25 @@
       <em>{{ doctor.Hospital }}</em>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-list-item routerLink="/doctors/{{ doctor.Id }}">Edit</a>
-      <a [routerLink]="'patients/' + doctor.Id">{{doctor.Patients.length}} Patients</a>
-      <p-button icon="pi pi-trash" label="Delete" (onClick)="onDelete(doctor.Id)" severity="danger"></p-button>
+      <a
+        mat-list-item
+        routerLink="/doctors/{{ doctor.Id }}"
+        routerLinkActive="active"
+        >Edit</a
+      >
+      <a
+        mat-list-item
+        routerLink="/patients/{{ doctor.Id }}"
+        routerLinkActive="active"
+        >{{ doctor.Patients.$values.length }} Patients</a
+      >
+      <p-button
+        icon="pi pi-trash"
+        class="bg-red-500 text-white"
+        label="Delete"
+        (onClick)="onDelete(doctor.Id)"
+        severity="danger"
+      ></p-button>
     </mat-card-actions>
   </mat-card>
 </div>
-

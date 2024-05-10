@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
       .getDoctors()
       .pipe(first())
       .subscribe((doctors) => {
-        this.doctors = doctors;
+        this.doctors = doctors.$values;
       });
   }
 }

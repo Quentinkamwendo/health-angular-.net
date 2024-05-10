@@ -14,7 +14,7 @@ export class DoctorService {
   }
 
   getDoctors() {
-    return this.http.get<Doctor[]>('api/Doctor');
+    return this.http.get<any>('api/Doctor');
   }
 
   getDoctor(id: string) {

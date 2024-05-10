@@ -12,11 +12,13 @@ import { MessageService } from 'primeng/api';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { DatePipe } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
+    DatePipe,
     provideHttpClient(withInterceptorsFromDi()),
     MessageService,
     provideNativeDateAdapter(),
