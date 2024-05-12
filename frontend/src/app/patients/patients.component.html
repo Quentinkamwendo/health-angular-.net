@@ -1,4 +1,10 @@
 <div>
+  <p-tabMenu
+    [model]="items"
+    [activeItem]="activeItem"
+    (activeItemChange)="onActiveItemChange($event)"
+  ></p-tabMenu>
+  <a mat-raised-button color="primary" [routerLink]="'/view-patients/' + doctorId">View Patients</a>
   <h3>{{title}}</h3>
   <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="grid">
     <mat-form-field class="w-full">

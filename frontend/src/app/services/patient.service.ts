@@ -18,7 +18,7 @@ export class PatientService {
   }
 
   getMany() {
-    return this.http.get<Patient[]>('api/Patient');
+    return this.http.get<any>('api/Patient');
   }
 
   update(doctorId: string, id: string, patient: FormData) {

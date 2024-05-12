@@ -1,0 +1,31 @@
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+  @for (patient of patients; track patient) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ patient.PatientName }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="{{ patient.ImagePath }}"
+      class="h-48 object-cover"
+      alt="Image"
+    />
+    <mat-card-content>
+      <mat-action-list>{{ patient.Age }}</mat-action-list>
+      <mat-action-list>{{ patient.Residence }}</mat-action-list>
+      <mat-action-list>{{ patient.Disease }}</mat-action-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-list-item routerLink="/patients/{{ doctorId }}/{{ patient.Id }}"
+        >Edit</a
+      >
+      <p-button
+        icon="pi pi-trash"
+        class="bg-red-500 text-white p-2 rounded-md"
+        label="Delete"
+        (onClick)="deletePatient(patient.Id)"
+      ></p-button>
+    </mat-card-actions>
+  </mat-card>
+  }
+</div>

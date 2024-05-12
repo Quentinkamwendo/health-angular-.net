@@ -25,6 +25,9 @@ export class PatientsComponent implements OnInit {
   doctorId!: string;
   uploadedFiles: any[] = [];
   title!: string;
+  items: MenuItem[] | undefined;
+  activeItem: MenuItem | undefined;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -51,6 +54,18 @@ export class PatientsComponent implements OnInit {
     // });
   }
   ngOnInit(): void {
+    this.items = [
+      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/' },
+      {
+        label: 'Patients',
+        icon: 'pi pi-fw pi-users',
+        routerLink: `/view-patients/${this.doctorId}`,
+        badge: '2'
+      },
+    ];
+
+    this.activeItem = this.items[0];
+
     this.id = this.route.snapshot.params['id'];
     this.title = 'Create Patient';
 
@@ -69,7 +84,10 @@ export class PatientsComponent implements OnInit {
       const patient = new FormData();
       patient.append('PatientName', patientData.PatientName!);
       patient.append('Residence', patientData.Residence!);
-      patient.append('TreatmentDate', this.datePipe.transform(patientData.TreatmentDate, 'yyyy-MM-dd')!);
+      patient.append(
+        'TreatmentDate',
+        this.datePipe.transform(patientData.TreatmentDate, 'yyyy-MM-dd')!
+      );
       patient.append('Disease', patientData.Disease!);
       patient.append('Age', patientData.Age?.toString()!);
       patient.append('Image', patientData.Image!);
@@ -114,20 +132,6 @@ export class PatientsComponent implements OnInit {
     }
   }
 
-  items: MenuItem[] | undefined;
-  // ngOnInit(): void {
-  //   this.items = [
-  //     {
-  //       label: 'Update',
-  //       icon: 'pi pi-refresh'
-  //     },
-  //     {
-  //       label: 'Delete',
-  //       icon: 'pi pi-times'
-  //     }
-  //   ]
-  // }
-
   onUpload(event: FileUploadEvent) {
     console.log(event.files[0]);
     const file = event.files[0];
@@ -135,5 +139,15 @@ export class PatientsComponent implements OnInit {
       this.uploadedFiles.push(file);
       this.patientForm.get('Image')?.setValue(file);
     }
+  }
+
+  onActiveItemChange(event: MenuItem) {
+    this.activeItem = event;
+  }
+
+  activateLast() {
+    this.activeItem = (this.items as MenuItem[])[
+      (this.items as MenuItem[]).length - 1
+    ];
   }
 }

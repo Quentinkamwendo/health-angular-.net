@@ -15,11 +15,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
     PatientsComponent
-  ],
+    ],
   imports: [
     CommonModule,
     PatientsRoutingModule,
@@ -34,7 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     FileUploadModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    TabMenuModule
   ]
 })
 export class PatientsModule { }
