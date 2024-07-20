@@ -46,7 +46,8 @@
               "RelativeToolTip": "Health.API\\Controllers\\DoctorController.cs",
               "ViewState": "AQIAABcAAAAAAAAAAAAAACIAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T17:55:54.883Z"
+              "WhenOpened": "2024-05-10T17:55:54.883Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -82,7 +83,8 @@
               "RelativeToolTip": "Health.API\\Models\\DTO\\Doctors\\DoctorUpdateDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T02:01:53.549Z"
+              "WhenOpened": "2024-05-02T02:01:53.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -92,7 +94,7 @@
               "RelativeDocumentMoniker": "Health.API\\Controllers\\PatientController.cs",
               "ToolTip": "C:\\Users\\USER\\Desktop\\Health\\Health.API\\Health.API\\Controllers\\PatientController.cs",
               "RelativeToolTip": "Health.API\\Controllers\\PatientController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAAHIAAAAAAAAA",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAG8AAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-01T01:23:04.244Z",
               "EditorCaption": ""

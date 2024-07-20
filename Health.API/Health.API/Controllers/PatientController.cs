@@ -109,7 +109,7 @@ namespace Health.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetPatients() 
         {
-            var response = await dbContext.Patients.ToListAsync();
+            var response = await dbContext.Patients.Include(p => p.Doctor).ToListAsync();
             return Ok(response);
         }
 
